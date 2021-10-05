@@ -1,4 +1,3 @@
-# edge_rpi
 # Pytorch Installation on Raspberry Pi 4
 
 Environment Configuration:
@@ -8,12 +7,21 @@ Environment Configuration:
     ```sh
     cat /etc/os-release
     ```
-    -- If not installed, I recommend downloading the [lite version](https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-05-28/2021-05-07-raspios-buster-armhf-lite.zip), and use the [Raspberry Pi Imager](https://downloads.raspberrypi.org/imager/imager_latest.dmg) to burn the image on the SD Card by selecting the 'Choose OS' --> 'Use Custom'
+    -- If not installed, I recommend downloading the [lite version](https://downloads.raspberrypi.org/raspios_lite_armhf/images/raspios_lite_armhf-2021-05-28/2021-05-07-raspios-buster-armhf-lite.zip), and use the [Raspberry Pi Imager](https://downloads.raspberrypi.org/imager/imager_latest.dmg) to burn the image on the SD Card by selecting the 'Choose OS' --> 'Use Custom'. This OS is headless, so we will need to set up SSH.
+    
+    -- Setting up SSH:
+    1. Navigate to the root folder of the boot device (SD card), and create an empty file named 'ssh'. When the Raspberry Pi boots for the first time, it will look for this file, and enable ssh if it is in there, then it will delete it.
+    2. Now we can use SSH to login using "raspberry" as the default password: 
+        ```sh
+        ssh pi@raspberrypi.local
+        ```
 
 - ARMv7 Processor rev 3 (v7l)
     ```sh
     cat /proc/cpuinfo
     ```
+    
+- [Demo Artifacts](https://drive.google.com/drive/folders/1DuSfiI60ORgVqJtft2Jv6lF9qZgUL7r0?usp=sharing) - To be used later but handy to download ahead of time
 
 ## Installing Torch from [ljk53](https://github.com/ljk53/pytorch-rpi/blob/master/torch-1.7.0a0-cp37-cp37m-linux_armv7l.whl)
 - Update & Upgrade
@@ -261,7 +269,7 @@ Environment Configuration:
     ```sh
     cd /home/pi/.local/lib/python3.7/site-packages/torchvision/models/
     ```
-    If you don't mobilenetv2 or mobilenetv3 we need to manually copy it over. You can use nano mobilenetv2.py and mobilenetv3.py to copy the following:
+    If you don't see mobilenetv2 or mobilenetv3 files, we need to manually copy it over. You can use ```nano mobilenetv2.py``` and ```nano mobilenetv3.py``` to copy the following:
     -- mobilenetv2.py:
     ```sh
     import torch
