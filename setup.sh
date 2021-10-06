@@ -38,7 +38,7 @@ if [ -f "$TORCHFILE" ]; then
     echo "$TORCHFILE already exists."
 else 
     echo "$TORCHFILE does not exist."
-    wget https://github.com/ljk53/pytorch-rpi/blob/master/torch-1.7.0a0-cp37-cp37m-linux_armv7l.whl -P $dir
+    wget https://github.com/ljk53/pytorch-rpi/raw/master/torch-1.7.0a0-cp37-cp37m-linux_armv7l.whl -P $dir
 fi
 pip3 install "$dir/torch-1.7.0a0-cp37-cp37m-linux_armv7l.whl"
 
@@ -68,7 +68,7 @@ if [ -f "$VISIONFILE" ]; then
     echo "$VISIONFILE already exists."
 else 
     echo "$VISIONFILE does not exist."
-    wget https://github.com/nmilosev/pytorch-arm-builds/blob/master/torchvision-0.4.0a0%2Bd31eafa-cp37-cp37m-linux_armv7l.whl -P $dir
+    wget https://github.com/nmilosev/pytorch-arm-builds/raw/master/torchvision-0.4.0a0%2Bd31eafa-cp37-cp37m-linux_armv7l.whl -P $dir
 fi
 sudo apt-get install libjpeg-dev zlib1g-dev libpython3-dev
 sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev
