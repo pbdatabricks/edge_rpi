@@ -18,6 +18,7 @@ echo "Installing Pytorch"
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install wget
+sudo apt-get install python3-pip
 echo "Installing Dependencies"
 sudo apt-get install ninja-build git cmake
 sudo apt-get install libopenmpi-dev libomp-dev ccache
