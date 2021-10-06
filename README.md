@@ -11,19 +11,47 @@ Environment Configuration:
     
     -- Setting up SSH:
     1. Navigate to the root folder of the boot device (SD card), and create an empty file named 'ssh'. When the Raspberry Pi boots for the first time, it will look for this file, and enable ssh if it is in there, then it will delete it.
-    2. Now we can use SSH to login using "raspberry" as the default password: 
+    2. On the root folder of the boot device, create another file 'wpa_supplicant.config' and fill in the network details:
+        ```sh
+        country=US # replace with your country code
+        ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+        network={
+            ssid="WIFI_NETWORK_NAME"
+            psk="WIFI_PASSWORD"
+            key_mgmt=WPA-PSK
+        }   
+        ```
+    3. Now we can use SSH to login using "raspberry" as the default password: 
         ```sh
         ssh pi@raspberrypi.local
         ```
-
+        Or
+        ```sh
+        ssh pi@raspberrypi.lan
+        ```
+        The default password is: raspberry
 - ARMv7 Processor rev 3 (v7l)
     ```sh
     cat /proc/cpuinfo
     ```
     
 - [Demo Artifacts](https://drive.google.com/drive/folders/1DuSfiI60ORgVqJtft2Jv6lF9qZgUL7r0?usp=sharing) - To be used later but handy to download ahead of time
-
-## Installing Torch from [ljk53](https://github.com/ljk53/pytorch-rpi/blob/master/torch-1.7.0a0-cp37-cp37m-linux_armv7l.whl)
+# Easy Install
+### Using .sh script
+Once you are in the home folder of Pi, download the setup.sh file:
+```sh
+wget https://raw.githubusercontent.com/pbdatabricks/edge_rpi/main/setup.sh
+```
+and execute it:
+```sh
+bash setup.sh
+```
+This should install all libraries and dependencies, and it will have the Flask app running. To verify it all works great, send a GET request from Postman to:
+    `````
+    <RASPBERRY_IP: 8080>/api/inferece
+    `````
+# Step by Step Install
+### Installing Torch from [ljk53](https://github.com/ljk53/pytorch-rpi/blob/master/torch-1.7.0a0-cp37-cp37m-linux_armv7l.whl)
 - Update & Upgrade
     ```sh
     sudo apt-get update
