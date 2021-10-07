@@ -11,7 +11,7 @@ Environment Configuration:
     
     -- Setting up SSH:
     1. Navigate to the root folder of the boot device (SD card), and create an empty file named 'ssh'. When the Raspberry Pi boots for the first time, it will look for this file, and enable ssh if it is in there, then it will delete it.
-    2. On the root folder of the boot device, create another file 'wpa_supplicant.config' and fill in the network details:
+    2. On the root folder of the boot device, create another file 'wpa_supplicant.conf' and fill in the network details:
         ```sh
         country=US # replace with your country code
         ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
@@ -30,6 +30,11 @@ Environment Configuration:
         ssh pi@raspberrypi.lan
         ```
         The default password is: raspberry
+        
+    4. Make sure to enable the camera interface by
+        ```sh
+        sudo raspi-config
+        ```
 - ARMv7 Processor rev 3 (v7l)
     ```sh
     cat /proc/cpuinfo
